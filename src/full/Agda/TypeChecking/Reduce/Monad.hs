@@ -120,7 +120,7 @@ underAbstraction_ :: Subst a => Abs a -> (a -> ReduceM b) -> ReduceM b
 underAbstraction_ = underAbstraction dummyDom
 
 lookupMeta :: MetaId -> ReduceM MetaVariable
-lookupMeta i = fromMaybe __IMPOSSIBLE__ . Map.lookup i <$> useR stMetaStore
+lookupMeta i = Map.findWithDefault __IMPOSSIBLE__ i <$> useR stMetaStore
 
 isInstantiatedMeta :: MetaId -> ReduceM Bool
 isInstantiatedMeta i = do
